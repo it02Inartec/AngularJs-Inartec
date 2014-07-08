@@ -1,14 +1,18 @@
 <!doctype html>
 <html lang="es" ng-app='MyAppInartec'>
 <head>
+	<title>Inartec</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/ng-grid.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>-->
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="js/ng-grid-2.0.11.min.js"></script>
 	<script src="js/app.js"></script>
-	<title>Inartec</title>
 </head>
-<body>
+<body ng-controller="DashboardControl">
 	<div class="div3days"><label>Proyeccion de los 3 Ultimos Dias</label></div>
 	<div class="DashToday"><label>Proyeccion Diaria</label></div>
 	<div class="DashPerformance"><label>Estadisticas de Rendimiento</label></div>
@@ -16,16 +20,41 @@
 	<div class="DashBarInfor"><label>Barra de Informacion</label><div style="height:1px; background: grey;"></div></div>
 	<div class="DashBarMessage"><label>Barra de Mensajes</label><div style="height:1px; background: grey;"></div></div>
 
-	<div class="DashAreas" ng-controller="AreaControl">
+	<div class="DashAreas">
 		<label>Lista de Areas</label>
 		<div style="height:1px; background: grey;"></div>
 		<div>
 		<ul id="menuAreas" class="list-unstyled">
-			<li ng-repeat="area in listareas">{{area.nombre}} {{area.apellido}}</li>
+			<li ng-repeat="area in listareas">
+				<!--<img src="https://www.forumsport.com/img/productos/299x299/378373.jpg" title="sample"/>-->
+				{{area.nombre}} {{area.apellido}}
+			</li>
 		</ul>
 		</div>
 	</div>
-	<div class="DashPatients"><label>Cuadro de Pacientes</label><div style="height:1px; background: grey;"></div></div>
-	<div class="DashDetail"><label>Detalles del Paciente</label><div style="height:1px; background: grey;"></div></div>
+	<div class="DashPatients" >
+		<label>Cuadro de Pacientes</label>
+		<div style="height:1px; background: grey;"></div>
+		<select style="width:100%">
+			<option ng-repeat="area in listareas">{{area.nombre}} {{area.apellido}}</option>
+		</select>
+		<div class="gridStyle" ng-grid="gridOptions"></div>
+	</div>
+	<div class="DashDetail">
+		<label>Detalles del Paciente</label>
+		<div style="height:1px; background: grey;"></div>
+		<div class="selectedItems">
+			<label>Selected ID: {{mySelections[0].Area}}</label><br/>
+			<label>Selected Nombre: {{mySelections[0].Nombre}}</label><br/>
+			<label>Selected Apellido: {{mySelections[0].Apellido}}</label><br/>
+			<label>Selected Edad: {{mySelections[0].age}}</label><br/>
+		</div>
+		<!--<div class="selectedItems" ng-repeat="areas in mySelections">
+			<b>Area:</b>{{areas.Area}}<br/>
+			<b>Nombre:</b>{{areas.Nombre}}<br/>
+			<b>Apellido:</b>{{areas.Apellido}}<br/>
+			<b>Edad:</b>{{areas.age}}<br/>
+		</div>-->
+	</div>
 </body>
 </html>
