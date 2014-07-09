@@ -1,13 +1,13 @@
 <?php
 include 'ChromePhp.php';
-ChromePhp::log('Llego a select.php!');
+ChromePhp::log('Llego a areas.php!');
 // El script de conexión de base de datos mysql
 require_once '../php/conexion.php';
 $status = '%';
 if(isset($_GET['status'])){
 	$status = $_GET['status'];
 }
-$query = "select * from  tbl_datos";
+$query = "select * from  tbl_areas";
 $result = $mysqli->get_results($query);
 
 ChromePhp::log($result);

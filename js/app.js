@@ -6,29 +6,37 @@ app.controller('DashboardControl', function($scope, $http) {
   // Cargar todas las areas disponibles en BD
   getArea();
 
-
   function getArea(){
-    $http.post("php/select.php").success(function(data){
+    $http.post("php/areas.php").success(function(data){
       $scope.listareas = data;
+      LoadGrid();
     });
-    CallGrid();
   };
 
-  function CallGrid(){
-    debugger;
-    $scope.mySelections = [];
-    $scope.myData = [{Area: "MAIN LOBBY", Nombre: "Moroni", Apellido: "Perez", age: 50},
-                     {Area: "SALA DE ESPERA", Nombre: "Tiancum", Apellido: "Briceño", age: 43},
-                     {Area: "SALA DE ESPERA", Nombre: "Jacob", Apellido: "Alarcon", age: 27},
-                     {Area: "SALA DE ESPERA", Nombre: "Nephi", Apellido: "Beuses", age: 29},
-                     {Area: "RAXOS X", Nombre: "Enos", Apellido: "Barriga", age: 34}];
-    $scope.gridOptions = {
-      data: 'myData',
-      columnDefs: [{ field: "Area", displayName: 'Areas'},
-                    { field: "Nombre", displayName: 'Nombres'},
-                    { field: "Apellido", displayName: 'Apellidos'}],
-      selectedItems: $scope.mySelections,
-      multiSelect: false
-    };
+  $scope.mySelections = [];
+  $scope.gridOptions = {
+    data: 'myData',
+    columnDefs: [
+      { field: "nombre_area", displayName: 'Areas'},
+      { field: "nombre", displayName: 'Nombres'},
+      { field: "apellido", displayName: 'Apellidos'},
+      { field: "tiempo", displayName: 'Tiempo en Area'}
+    ],
+    selectedItems: $scope.mySelections,
+    multiSelect: false
   }
+
+  function LoadGrid(){
+    $http.post("php/consultas.php").success(function(data){
+      $scope.myData = data;
+    });
+  }
+
+  $scope.cualArea = function (area) {
+    debugger;
+    /*$http.post("ajax/addTask.php?task="+task).success(function(data){
+      getTask();
+      $scope.taskInput = "";
+    });*/
+  };
 });

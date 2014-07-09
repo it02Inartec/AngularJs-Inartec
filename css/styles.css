@@ -74,8 +74,8 @@ body{
 	height:450px;
 	border:1px solid grey;
 	border-radius: 10px;
-	float: left;
 	margin-top: 10px;
+	float: left;
 	text-align: center;
 }
 label{
@@ -139,5 +139,15 @@ ul#menuAreas li::after {
 .selectedItems{
 	padding: 5px;
 	text-align: left;
-    float: left;
+    width: 100%;
+    /*border:1px solid grey;*/
+}
+.selectedItems div#Diiv{
+	width: 110px;
+	float: right;
+	margin-right: 10px;
+}
+#Diiv img{
+	max-width: 105px;
+	max-height: 98px;
 }

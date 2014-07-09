@@ -1,0 +1,131 @@
+-- phpMyAdmin SQL Dump
+-- version 3.1.3.1
+-- http://www.phpmyadmin.net
+--
+-- Servidor: localhost
+-- Tiempo de generación: 09-07-2014 a las 21:02:39
+-- Versión del servidor: 5.1.33
+-- Versión de PHP: 5.2.9-2
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Base de datos: `usuario`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tasks`
+--
+
+CREATE TABLE IF NOT EXISTS `tasks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `task` varchar(200) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Volcar la base de datos para la tabla `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `task`, `status`, `created_at`) VALUES
+(1, 'My first task', 0, 1390815970),
+(2, 'Perform unit testing', 0, 1390815993),
+(7, 'Nueva', 0, 1403550898),
+(8, 'Una de las pruebas', 0, 1404160489);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_areas`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_areas` (
+  `id_area` int(5) NOT NULL AUTO_INCREMENT,
+  `nombre_area` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_area`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Volcar la base de datos para la tabla `tbl_areas`
+--
+
+INSERT INTO `tbl_areas` (`id_area`, `nombre_area`) VALUES
+(1, 'Sala de espera'),
+(2, 'Rayos X'),
+(3, 'Consultorio 1'),
+(4, 'Consultorio 2');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_consulta`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_consulta` (
+  `id_consulta` int(5) NOT NULL AUTO_INCREMENT,
+  `hora_entrada` datetime NOT NULL,
+  `hora_salida` datetime NOT NULL,
+  `id_paciente` int(5) NOT NULL,
+  `id_area` int(5) NOT NULL,
+  PRIMARY KEY (`id_consulta`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcar la base de datos para la tabla `tbl_consulta`
+--
+
+INSERT INTO `tbl_consulta` (`id_consulta`, `hora_entrada`, `hora_salida`, `id_paciente`, `id_area`) VALUES
+(1, '2014-07-09 14:24:00', '2014-07-09 14:55:08', 1, 3),
+(2, '2014-07-09 14:46:28', '2014-07-09 14:56:36', 2, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_datos`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_datos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) NOT NULL,
+  `apellido` varchar(30) NOT NULL,
+  `usuario` varchar(30) NOT NULL,
+  `contrasena` varchar(8) NOT NULL,
+  `status` int(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Volcar la base de datos para la tabla `tbl_datos`
+--
+
+INSERT INTO `tbl_datos` (`id`, `nombre`, `apellido`, `usuario`, `contrasena`, `status`) VALUES
+(4, 'Jennifer', 'Miranda', 'it02', '1234', 0),
+(3, 'Jorge', 'Miranda', 'miranda', '1234', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_pacientes`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_pacientes` (
+  `id_paciente` int(5) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `genero` char(1) NOT NULL,
+  `edad` int(3) NOT NULL,
+  `imagen` varchar(200) NOT NULL,
+  PRIMARY KEY (`id_paciente`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcar la base de datos para la tabla `tbl_pacientes`
+--
+
+INSERT INTO `tbl_pacientes` (`id_paciente`, `nombre`, `apellido`, `genero`, `edad`, `imagen`) VALUES
+(1, 'Jennifer', 'Miranda', 'f', 28, 'http://www.mediablvd.com/magazine/images/stories/fg/black/halle%20berry.jpg'),
+(2, 'Jorge', 'Alarcon', 'm', 30, 'http://coo3.tuvotacion.com:81/imagenes_opciones/el-mas-guapo-de-big-time-rush-2-344757.jpg');
