@@ -83,19 +83,7 @@ label{
 	font-family: "Calibri bold", Arial, sans-serif;
 	font-size: 13px;
 }
-/*
-#menuAreas li{
-	list-style-type: none;
-	text-align: left;
-	color: #616161;
-	font-family: Arial bold;
-	width: 100%;
-	height: 40px;
-	border-top: 0.5px solid #B9B9B9;
-	border-bottom: 1px solid #B9B9B9;
-	vertical-align: middle;
-}*/
-
+/* Inicio Diseño mMobile List*/
 ul#menuAreas { list-style: none; font-family: "Calibri", Arial, sans-serif; text-align: left;}
 ul#menuAreas li {
   position: relative;
@@ -104,7 +92,6 @@ ul#menuAreas li {
   padding-left: 10px;
   text-decoration: none;
   font-size: 20px;
-  /*color: #787878;*/
   color: #616161;
   font-weight: bold;
   overflow: hidden;
@@ -112,14 +99,24 @@ ul#menuAreas li {
   border-bottom: 1px solid #d9e2eb;
   background: #fff;
   display: block;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff) to(#ecf1f5));
-  background-image: -webkit-linear-gradient(top, #ffffff, #ecf1f5);
-  background-image: -moz-linear-gradient(top, #ffffff, #ecf1f5);
-  background-image: -o-linear-gradient(top, #ffffff, #ecf1f5);
-  background-image: linear-gradient(top, #ffffff, #ecf1f5);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff) to(#e9e9e9));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e9e9e9);
+  background-image: -moz-linear-gradient(top, #ffffff, #e9e9e9);
+  background-image: -o-linear-gradient(top, #ffffff, #e9e9e9);
+  background-image: linear-gradient(top, #ffffff, #e9e9e9);
 }
-ul#menuAreas li:hover { color: #999; cursor: pointer;}
-/* Flechas */
+ul#menuAreas li:hover {
+	/*color: #999;*/
+	cursor: pointer;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff) to(#d2d2d2));
+	background-image: -webkit-linear-gradient(top, #ffffff, #d2d2d2);
+	background-image: -moz-linear-gradient(top, #ffffff, #d2d2d2);
+	background-image: -o-linear-gradient(top, #ffffff, #d2d2d2);
+	background-image: linear-gradient(top, #ffffff, #d2d2d2);
+}
+ul#menuAreas li:active {
+	background: #d1cfcf;
+}
 ul#menuAreas li::after {
 	content: url('../img/flecha.png');
 	position: absolute;
@@ -127,11 +124,11 @@ ul#menuAreas li::after {
 	top: 35%;
 	margin-top: -5px;
 }
-
+/* Fin Diseño mMobile List*/
 .gridStyle {
     border: 1px solid rgb(212,212,212);
     width: 100%;
-    height: 400px;
+    height: 200px;
     text-align: left;
     font-family: "Arial";
     font-size: 13px;

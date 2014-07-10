@@ -25,7 +25,8 @@
 		<div style="height:1px; background: grey;"></div>
 		<div>
 		<ul id="menuAreas" class="list-unstyled">
-			<li ng-repeat="area in listareas" value="area.id_area" ng-click="cualArea(area.id_area)">
+			<li value="" ng-click="cualArea('')">Todas las Areas</li>
+			<li ng-repeat="area in listareas" value="area.id_area" ng-click="cualArea(area.nombre_area)">
 				<!--<img src="https://www.forumsport.com/img/productos/299x299/378373.jpg" title="sample"/>-->
 				{{area.nombre_area}}
 			</li>
@@ -36,17 +37,19 @@
 		<label>Cuadro de Pacientes</label>
 		<div style="height:1px; background: grey;"></div>
 		<select style="width:100%">
+			<option value="">Todas las Areas</option>
 			<option ng-repeat="area in listareas" value="area.id_area">{{area.nombre_area}}</option>
 		</select>
 		<div class="gridStyle" ng-grid="gridOptions"></div>
+		<button ng-click="getDataOrder()">GetData</button>
 	</div>
 	<div class="DashDetail">
 		<label>Detalles del Paciente</label>
 		<div style="height:1px; background: grey;"></div>
 		<div class="selectedItems" ng-hide="!mySelections[0].id_paciente">
-		<div id="Diiv">
-			<img src="{{mySelections[0].imagen}}">
-		</div>
+			<div id="Diiv">
+				<img src="{{mySelections[0].imagen}}">
+			</div>
 			<label>{{mySelections[0].nombre}} {{mySelections[0].apellido}}</label><br/>
 			<label ng-if="mySelections[0].genero == 'f'">Femenino, {{mySelections[0].edad}}</label>
 			<label ng-if="mySelections[0].genero != 'f'">Masculino, {{mySelections[0].edad}}</label>
