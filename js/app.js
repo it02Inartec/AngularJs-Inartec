@@ -1,11 +1,12 @@
 //Definir un módulo angular de nuestra aplicación
 var app = angular.module('MyAppInartec', ['ngGrid']);
+
 var efectoSelectedItems = true;
+var dataSelectedItem = [];
 app.controller('DashboardControl', function($scope, $http) {
 
   // Cargar todas las areas disponibles en BD
   getArea();
-
   function getArea(){
     $http.post("php/areas.php").success(function(data){
       $scope.listareas = data;
@@ -13,6 +14,7 @@ app.controller('DashboardControl', function($scope, $http) {
     });
   };
 
+  // Configuramos el grid y sus columnas.
   $scope.mySelections = [];
   $scope.gridOptions = {
     data: 'myData',
@@ -25,8 +27,10 @@ app.controller('DashboardControl', function($scope, $http) {
     // Para activar desplazamiento del div de los detalles del paciente y se vea con animacion.
     afterSelectionChange: function() {
       if(efectoSelectedItems == true){
-        $(".selectedItems").slideUp('slow').attr('ng-hide','true');
-        $(".selectedItems").slideDown('slow').attr('ng-hide','false');
+        $(".selectedItems").height('100px');
+        $scope.mySelections = dataSelectedItem;
+        $(".selectedItems").slideUp();
+        $(".selectedItems").slideDown(1000,'linear');
         efectoSelectedItems = false;
       }
       else{
@@ -39,21 +43,26 @@ app.controller('DashboardControl', function($scope, $http) {
     multiSelect: false
   }
 
+  // Para cargar grid
   function LoadGrid(){
     $http.post("php/consultas.php").success(function(data){
       $scope.myData = data;
     });
   }
 
+  // Para filtrar pacientes por area (MobileList)
   $scope.cualArea = function (area) {
     $scope.gridOptions.filterOptions.filterText = area;
   };
 
+  // Para carturar array del grid filtrado
   $scope.getDataOrder = function(){
-    //angular.forEach($scope.myData, function(data, index){   console.log(index,data); })
     $.map($scope.gridOptions.ngGrid.filteredRows, function(o){
-      debugger;
       console.log(o.entity);
     });
+  };
+  $scope.ff = function () {
+    dataSelectedItem = $scope.gridOptions.selectedItems;
+    $scope.mySelections = [];
   };
 });

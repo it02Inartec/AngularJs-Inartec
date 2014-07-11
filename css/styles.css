@@ -133,11 +133,15 @@ ul#menuAreas li::after {
     font-family: "Arial";
     font-size: 13px;
 }
+/*.gridStyle div:active {
+	background: #000;
+}*/
 .selectedItems{
 	padding: 5px;
 	text-align: left;
     width: 100%;
-    /*border:1px solid grey;*/
+    border:1px solid grey;
+    overflow: hidden;
 }
 .selectedItems div#Diiv{
 	width: 110px;
