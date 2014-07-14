@@ -1,16 +1,20 @@
 //Definir un módulo angular de nuestra aplicación
-var app = angular.module('MyAppInartec', ['ngGrid']);
+var app = angular.module('MyAppInartec', ['ngGrid', 'ui.sortable']);
 
 var efectoSelectedItems = true;
 var dataSelectedItem = [];
+var dataListArea = [];
+
 app.controller('DashboardControl', function($scope, $http) {
 
   // Cargar todas las areas disponibles en BD
   getArea();
+
   function getArea(){
     $http.post("php/areas.php").success(function(data){
       $scope.listareas = data;
       LoadGrid();
+      dataListArea  = data;
     });
   };
 
@@ -64,5 +68,60 @@ app.controller('DashboardControl', function($scope, $http) {
   $scope.ff = function () {
     dataSelectedItem = $scope.gridOptions.selectedItems;
     $scope.mySelections = [];
+  };
+
+  // Opciones/Eventos para el sortable..
+  $scope.sortingLog = [];
+  $scope.sortableOptions = {
+    activate: function() {
+        console.log("activate/activar");
+    },
+    beforeStop: function() {
+        console.log("beforeStop/antes de la parada");
+    },
+    change: function() {
+        console.log("change/cambio");
+    },
+    create: function() {
+        console.log("create/crear");
+    },
+    deactivate: function() {
+        console.log("deactivate/desactivar");
+    },
+    out: function() {
+        console.log("out/fuera");
+    },
+    over: function() {
+        console.log("over/encima");
+    },
+    receive: function() {
+        console.log("receive/recibir");
+    },
+    remove: function() {
+        console.log("remove/eliminar");
+    },
+    sort: function() {
+        console.log("sort/ordenar");
+    },
+    start: function() {
+        console.log("start/comienzo");
+    },
+    update: function(e, ui) {
+      console.log("update/actualización");
+
+      var logEntry = dataListArea.map(function(i){
+        return i.nombre_area;
+      }).join(', ');
+      $scope.sortingLog.push('* Update= ' + logEntry);
+    },
+    stop: function(e, ui) {
+      console.log("stop/parada");
+
+      // Esta devolucion tiene el modelo cambiado
+      var logEntry = dataListArea.map(function(i){
+        return i.nombre_area;
+      }).join(', ');
+      $scope.sortingLog.push('* Stop= ' + logEntry);
+    }
   };
 });
