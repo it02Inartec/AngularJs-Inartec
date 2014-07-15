@@ -18,9 +18,17 @@
 	<script src="js/sortable.js"></script> <!-- https://github.com/angular-ui/ui-sortable/blob/master/src/sortable.js -->
 	<script src="js/ng-grid-2.0.11.min.js"></script>
 	<script src="js/app.js"></script>
+
+	<script src="js/jquery.flot.js"></script>
 </head>
 <body ng-controller="DashboardControl">
-	<div class="div3days"><label>Proyeccion de los 3 Ultimos Dias</label></div>
+	<div class="div3days">
+		<label>Proyeccion de los 3 Ultimos Dias</label>
+		<script type="text/javascript">
+			Create_StadistDay();
+		</script>
+		<div id="Dia1"></div>
+	</div>
 	<div class="DashToday"><label>Proyeccion Diaria</label></div>
 	<div class="DashPerformance"><label>Estadisticas de Rendimiento</label></div>
 
@@ -47,12 +55,16 @@
 			<option ng-repeat="area in listareas" value="area.id_area">{{area.nombre_area}}</option>
 		</select>
 		<div class="gridStyle" ng-grid="gridOptions" ng-mousedown="ff()"></div>
+		<div ng-hide="true">
+		<button ng-click="Arriba()">Arriba</button>
+		<button ng-click="Abajo()">Abajo</button>
 		<button ng-click="getDataOrder()">GetData</button>
+		</div>
 	</div>
 	<div class="DashDetail">
 		<label>Detalles del Paciente</label>
 		<div style="height:1px; background: grey;"></div>
-		<div class="selectedItems" ng-hide="!mySelections[0].id_paciente" style="background: bisque;">
+		<div class="selectedItems" ng-hide="!mySelections[0].id_paciente" style="/*background: bisque;*/">
 			<div id="Diiv">
 				<img src="{{mySelections[0].imagen}}">
 			</div>
@@ -60,6 +72,9 @@
 			<label ng-if="mySelections[0].genero == 'f'">Femenino, {{mySelections[0].edad}}</label>
 			<label ng-if="mySelections[0].genero != 'f'">Masculino, {{mySelections[0].edad}}</label>
 			<br/><label>Hora de llegada: {{mySelections[0].hora_entrada}}</label><br/>
+			<div style="float:right; width:100%; margin-top:10px;">
+				<div class="gridStyle" style="overflow: hidden" ng-grid="gridOptions2"></div>
+			</div>
 		</div>
 		<!--<div class="selectedItems" ng-repeat="areas in mySelections">
 			<b>Area:</b>{{areas.Area}}<br/>

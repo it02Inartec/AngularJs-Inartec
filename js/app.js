@@ -18,7 +18,7 @@ app.controller('DashboardControl', function($scope, $http) {
     });
   };
 
-  // Configuramos el grid y sus columnas.
+  // Primero hay que configurar el grid y sus columnas.
   $scope.mySelections = [];
   $scope.gridOptions = {
     data: 'myData',
@@ -31,7 +31,7 @@ app.controller('DashboardControl', function($scope, $http) {
     // Para activar desplazamiento del div de los detalles del paciente y se vea con animacion.
     afterSelectionChange: function() {
       if(efectoSelectedItems == true){
-        $(".selectedItems").height('100px');
+        $(".selectedItems").height('400px');
         $scope.mySelections = dataSelectedItem;
         $(".selectedItems").slideUp();
         $(".selectedItems").slideDown(1000,'linear');
@@ -47,9 +47,10 @@ app.controller('DashboardControl', function($scope, $http) {
     multiSelect: false
   }
 
-  // Para cargar grid
+  // Luego podemos cargar el grid
   function LoadGrid(){
-    $http.post("php/consultas.php").success(function(data){
+    $http.post("php/consultas.php")
+    .success(function(data){
       $scope.myData = data;
     });
   }
@@ -124,4 +125,99 @@ app.controller('DashboardControl', function($scope, $http) {
       $scope.sortingLog.push('* Stop= ' + logEntry);
     }
   };
+
+  $scope.myData2 = [
+    {sintoma: "1 Moroni", procedimiento:'test 1', estatus:0},
+    {sintoma: "2 Moroni", procedimiento:'test 2', estatus:0},
+    {sintoma: "3 Moroni", procedimiento:'test 3', estatus:0},
+    {sintoma: "4 Moroni", procedimiento:'test 4', estatus:0},
+    {sintoma: "5 Moroni", procedimiento:'test 5', estatus:0}
+  ];
+
+  $scope.mySelections2 = [];
+  $scope.gridOptions2 = {
+    showSelectionCheckbox: true,
+    data: 'myData2',
+    columnDefs: [
+      { field: "sintoma", displayName: 'Sintoma'},
+      { field: "procedimiento", displayName: 'Procediemiento'},
+      { field: "estatus", displayName: 'Estatus'}
+    ],
+    selectedItems: $scope.mySelections2,
+    showFilter: true,
+    filterOptions: {filterText:'', useExternalFilter: false},
+    sortInfo:  { fields: ['estatus'], directions: ['asc'] },
+    multiSelect: true
+  }
+
+  $scope.$on('ngGridEventData', function(){
+    //$scope.gridOptions2.selectRow(0, true);
+    angular.forEach($scope.myData2, function(data, index){
+        if(data.estatus == 1){
+            $scope.gridOptions2.selectItem(index, true);
+        }
+    });
+  });
+
+  $scope.Arriba = function(){
+    angular.forEach($scope.myData2, function(data, index){
+        if(data.procedimiento === $scope.mySelections2[0].procedimiento){
+            $scope.myData2[index].estatus = 1;
+        }
+    });
+   };
 });
+
+function Create_StadistDay(Day,PerDay,DataGrap){
+    //if(app.parentApp() !== null){
+        Diary = 100;
+        ConsultsD = 43;
+        PorDay = ConsultsD / Diary;
+        PorDay = PorDay * 100;
+        PorDay = parseInt(PorDay);
+
+        Day = [[0.5,'Lunes']];
+        PerDay = [[0,PorDay+'%'],[1,'100%']];
+
+        DataGrap = [
+            {data:[[60,1]],color:"#b7e4f7"},
+            {data:[[30,0]],color:"#f7de8b"},
+
+            {label:'Lunes',data:[[60,1]],color:"#b7e4f7",yaxis:2},
+            {label:'Metadiaria',data:[[30,0]],color:"#f7de8b",yaxis:2}
+        ];
+        debugger;
+        container = $('Dia1');
+        //container = document.getElementById(app.w('Stadist_DayChart').base()[0].id);
+
+        graph = Flotr.draw(container,DataGrap,{
+            //title:'Proyección Diaria',
+            //HtmlText : false,
+            bars : {
+                show : true,
+                horizontal : true,
+                shadowSize : 0,
+                barWidth : 0.5
+            },
+            legend : {
+                show:false
+            },
+            mouse : {
+                track : true,
+                relative : true
+            },
+            xaxis:{
+                min:0,
+                //max:app.parentApp().ConsultDaily()
+                max:50
+            },
+            yaxis : {
+                ticks:Day//[[0.5,'Lunes']]
+            },
+            y2axis:{
+                ticks:PerDay//[[0,'50%'],[1,'100%']]
+            }
+        }
+      );
+    //}
+}
