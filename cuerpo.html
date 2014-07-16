@@ -1,0 +1,85 @@
+	<div class="div3days">
+		<label>Proyeccion de los 3 Ultimos Dias</label>
+		<div id="Dia3" style="width:350px; height: 70px; /*margin: 8px auto;*/"></div>
+		<script type="text/javascript">
+			Create_StadistDay('Day','PerDay','DataGrap',$('#Dia3')[0]);
+		</script>
+	</div>
+	<div class="DashToday">
+		<label>Proyeccion Diaria</label>
+		<div id="Dia1" style="width:350px; height: 70px; /*margin: 8px auto;*/"></div>
+		<script type="text/javascript">
+			Create_StadistDay('Day','PerDay','DataGrap',$('#Dia1')[0]);
+		</script>
+	</div>
+	<div class="DashPerformance">
+		<label>Estadisticas de Rendimiento</label>
+	</div>
+
+	<div class="DashBarInfor"><label>Barra de Informacion</label><div style="height:1px; background: grey;"></div></div>
+	<div class="DashBarMessage"><label>Barra de Mensajes</label><div style="height:1px; background: grey;"></div></div>
+
+	<div class="DashAreas">
+		<label>Lista de Areas</label>
+		<div style="height:1px; background: grey;"></div>
+		<div>
+		<ul id="menuAreas" class="list-unstyled">
+			<li value="" ng-click="cualArea('')">Todas las Areas</li>
+			<li ng-repeat="area in listareas" ng-click="cualArea(area.nombre_area)">
+				{{area.nombre_area}}
+			</li>
+			<!--<li ng-repeat="area in listareas" ng-click="cualArea(area.nombre_area)" ng-if="area.id_area==2" style="background:pink;">
+				{{area.nombre_area}}
+			</li>
+			<li ng-repeat="area in listareas" ng-click="cualArea(area.nombre_area)" ng-if="area.id_area!=2">
+				{{area.nombre_area}}
+			</li>-->
+		</ul>
+		</div>
+	</div>
+	<div class="DashPatients" >
+		<label>Cuadro de Pacientes</label>
+		<div style="height:1px; background: grey;"></div>
+		<select style="width:100%">
+			<option value="">Todas las Areas</option>
+			<option ng-repeat="area in listareas" value="area.id_area">{{area.nombre_area}}</option>
+		</select>
+		<div class="gridStyle" ng-grid="gridOptions" ng-mousedown="ff()"></div>
+		<div ng-hide="true">
+		<button ng-click="Arriba()">Arriba</button>
+		<button ng-click="Abajo()">Abajo</button>
+		<button ng-click="getDataOrder()">GetData</button>
+		</div>
+	</div>
+	<div class="DashDetail">
+		<label>Detalles del Paciente</label>
+		<div style="height:1px; background: grey;"></div>
+		<div class="selectedItems" ng-hide="!mySelections[0].id_paciente" style="/*background: bisque;*/">
+			<div id="Diiv">
+				<img src="{{mySelections[0].imagen}}">
+			</div>
+			<label>{{mySelections[0].nombre}} {{mySelections[0].apellido}}</label><br/>
+			<label ng-if="mySelections[0].genero == 'f'">Femenino, {{mySelections[0].edad}}</label>
+			<label ng-if="mySelections[0].genero != 'f'">Masculino, {{mySelections[0].edad}}</label>
+			<br/><label>Hora de llegada: {{mySelections[0].hora_entrada}}</label><br/>
+			<div style="float:right; width:100%; margin-top:10px;">
+				<div class="gridStyle" style="overflow: hidden" ng-grid="gridOptions2"></div>
+			</div>
+		</div>
+	</div>
+
+	<div style="width:50%; height:300px; border:1px solid grey; border-radius: 10px; float: left; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; text-align: left; overflow: auto;">
+		<div style="float: left;">
+			<ul id="menuAreas" class="list-unstyled" style="width:150%;" ui-sortable="sortableOptions" ng-model="listareas">
+				<li ng-repeat="area in listareas">
+					<img style="max-width:30px;" src="https://www.forumsport.com/img/productos/299x299/378373.jpg" title="sample"/>
+					{{area.nombre_area}}
+				</li>
+			</ul>
+		</div>
+		<div style="float: right;">
+			<ul class="list logList">
+			  <li ng-repeat="entry in sortingLog track by $index" class="logItem">{{entry}}</li>
+			</ul>
+		</div>
+	</div>

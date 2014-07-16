@@ -168,56 +168,50 @@ app.controller('DashboardControl', function($scope, $http) {
    };
 });
 
-function Create_StadistDay(Day,PerDay,DataGrap){
-    //if(app.parentApp() !== null){
-        Diary = 100;
-        ConsultsD = 43;
-        PorDay = ConsultsD / Diary;
-        PorDay = PorDay * 100;
-        PorDay = parseInt(PorDay);
+function Create_StadistDay(Day,PerDay,DataGrap,container){
+  Diary = 100;
+  ConsultsD = 43;
+  PorDay = ConsultsD / Diary;
+  PorDay = PorDay * 100;
+  PorDay = parseInt(PorDay);
 
-        Day = [[0.5,'Lunes']];
-        PerDay = [[0,PorDay+'%'],[1,'100%']];
+  Day = [[0.5,'Lunes']];
+  PerDay = [[0,PorDay+'%'],[1,'100%']];
 
-        DataGrap = [
-            {data:[[60,1]],color:"#b7e4f7"},
-            {data:[[30,0]],color:"#f7de8b"},
+  DataGrap = [
+      {data:[[60,1]],color:"#b7e4f7"},
+      {data:[[30,0]],color:"#f7de8b"},
 
-            {label:'Lunes',data:[[60,1]],color:"#b7e4f7",yaxis:2},
-            {label:'Metadiaria',data:[[30,0]],color:"#f7de8b",yaxis:2}
-        ];
-        debugger;
-        container = $('Dia1');
-        //container = document.getElementById(app.w('Stadist_DayChart').base()[0].id);
+      {label:'Lunes',data:[[60,1]],color:"#b7e4f7",yaxis:2},
+      {label:'Metadiaria',data:[[30,0]],color:"#f7de8b",yaxis:2}
+  ];
 
-        graph = Flotr.draw(container,DataGrap,{
-            //title:'Proyección Diaria',
-            //HtmlText : false,
-            bars : {
-                show : true,
-                horizontal : true,
-                shadowSize : 0,
-                barWidth : 0.5
-            },
-            legend : {
-                show:false
-            },
-            mouse : {
-                track : true,
-                relative : true
-            },
-            xaxis:{
-                min:0,
-                //max:app.parentApp().ConsultDaily()
-                max:50
-            },
-            yaxis : {
-                ticks:Day//[[0.5,'Lunes']]
-            },
-            y2axis:{
-                ticks:PerDay//[[0,'50%'],[1,'100%']]
-            }
-        }
-      );
-    //}
+  //container = document.getElementById(app.w('Stadist_DayChart').base()[0].id);
+  //container = $('Dia1');
+  graph = Flotr.draw(container,DataGrap,{
+      bars : {
+          show : true,
+          horizontal : true,
+          shadowSize : 0,
+          barWidth : 0.5
+      },
+      legend : {
+          show:false
+      },
+      mouse : {
+          track : true,
+          relative : true
+      },
+      xaxis:{
+          min:0,
+          //max:app.parentApp().ConsultDaily()
+          max:50
+      },
+      yaxis : {
+          ticks:Day//[[0.5,'Lunes']]
+      },
+      y2axis:{
+          ticks:PerDay//[[0,'50%'],[1,'100%']]
+      }
+  });
 }
