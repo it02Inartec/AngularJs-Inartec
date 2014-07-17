@@ -86,24 +86,24 @@ label{
 /* Inicio Diseño mMobile List*/
 ul#menuAreas { list-style: none; font-family: "Calibri", Arial, sans-serif; text-align: left;}
 ul#menuAreas li {
-  position: relative;
-  width: 100%;
-  padding: 8px 0px;
-  padding-left: 10px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #616161;
-  font-weight: bold;
-  overflow: hidden;
-  height: 45px;
-  border-bottom: 1px solid #d9e2eb;
-  background: #fff;
-  display: block;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff) to(#e9e9e9));
-  background-image: -webkit-linear-gradient(top, #ffffff, #e9e9e9);
-  background-image: -moz-linear-gradient(top, #ffffff, #e9e9e9);
-  background-image: -o-linear-gradient(top, #ffffff, #e9e9e9);
-  background-image: linear-gradient(top, #ffffff, #e9e9e9);
+	position: relative;
+	width: 100%;
+	padding: 8px 0px;
+	padding-left: 10px;
+	text-decoration: none;
+	font-size: 20px;
+	color: #616161;
+	font-weight: bold;
+	overflow: hidden;
+	height: 45px;
+	border-bottom: 1px solid #d9e2eb;
+	background: #fff;
+	display: block;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff) to(#e9e9e9));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e9e9e9);
+	background-image: -moz-linear-gradient(top, #ffffff, #e9e9e9);
+	background-image: -o-linear-gradient(top, #ffffff, #e9e9e9);
+	background-image: linear-gradient(top, #ffffff, #e9e9e9);
 }
 ul#menuAreas li:hover {
 	/*color: #999;*/
@@ -151,4 +151,33 @@ ul#menuAreas li::after {
 #Diiv img{
 	max-width: 105px;
 	max-height: 98px;
+}
+
+.pinkList {
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF2F2) to(pink)) !important;
+	background-image: -webkit-linear-gradient(top, #FFD7D7, pink) !important;
+	background-image: -moz-linear-gradient(top, #FFD7D7, pink) !important;
+	background-image: -o-linear-gradient(top, #FFD7D7, pink) !important;
+	background-image: linear-gradient(top, #FFD7D7, pink) !important;
+}
+.pinkList:hover {
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF2F2) to(#FF889D)) !important;
+	background-image: -webkit-linear-gradient(top, #FFD7D7, #FF889D) !important;
+	background-image: -moz-linear-gradient(top, #FFD7D7, #FF889D) !important;
+	background-image: -o-linear-gradient(top, #FFD7D7, #FF889D) !important;
+	background-image: linear-gradient(top, #FFD7D7, #FF889D) !important;
+}
+.blueList {
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#73f1ff) to(#75BAFF)) !important;
+	background-image: -webkit-linear-gradient(top, #73f1ff, #75BAFF) !important;
+	background-image: -moz-linear-gradient(top, #73f1ff, #75BAFF) !important;
+	background-image: -o-linear-gradient(top, #73f1ff, #75BAFF) !important;
+	background-image: linear-gradient(top, #73f1ff, #75BAFF) !important;
+}
+.blueList:hover {
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#73f1ff) to(#0080FF)) !important;
+	background-image: -webkit-linear-gradient(top, #73f1ff, #0080FF) !important;
+	background-image: -moz-linear-gradient(top, #73f1ff, #0080FF) !important;
+	background-image: -o-linear-gradient(top, #73f1ff, #0080FF) !important;
+	background-image: linear-gradient(top, #73f1ff, #0080FF) !important;
 }

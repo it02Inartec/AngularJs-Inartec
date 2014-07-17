@@ -108,6 +108,7 @@ app.controller('DashboardControl', function($scope, $http) {
         console.log("start/comienzo");
     },
     update: function(e, ui) {
+      // [ui.item[0].innerText] = Elemento que movimos
       console.log("update/actualización");
 
       var logEntry = dataListArea.map(function(i){
@@ -149,11 +150,15 @@ app.controller('DashboardControl', function($scope, $http) {
     sortInfo:  { fields: ['estatus'], directions: ['asc'] },
     multiSelect: true
   }
+  $('.ngCanvas').find('div').removeClass('even');
 
   $scope.$on('ngGridEventData', function(){
     //$scope.gridOptions2.selectRow(0, true);
+    // Recorro los datos de "myData2".
     angular.forEach($scope.myData2, function(data, index){
+        // si estatus es igual a uno marco la fila.
         if(data.estatus == 1){
+            // index = posicion de la fila que sera marcada.
             $scope.gridOptions2.selectItem(index, true);
         }
     });
@@ -162,10 +167,15 @@ app.controller('DashboardControl', function($scope, $http) {
   $scope.Arriba = function(){
     angular.forEach($scope.myData2, function(data, index){
         if(data.procedimiento === $scope.mySelections2[0].procedimiento){
+            // Cambio el valor de una fila por "1".
             $scope.myData2[index].estatus = 1;
         }
     });
-   };
+  };
+
+  $scope.Ir1 = function(){
+    Ir11();
+  };
 });
 
 function Create_StadistDay(Day,PerDay,DataGrap,container){
@@ -214,4 +224,10 @@ function Create_StadistDay(Day,PerDay,DataGrap,container){
           ticks:PerDay//[[0,'50%'],[1,'100%']]
       }
   });
+}
+
+function Ir11(){
+  debugger;
+    /*$(".mainPage").slideUp('fast');
+    $(".sortablePage").slideDown('slow').attr('ng-hide','false');*/
 }

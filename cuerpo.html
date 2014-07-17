@@ -1,3 +1,4 @@
+	<div class="mainPage" ng-hide="false">
 	<div class="div3days">
 		<label>Proyeccion de los 3 Ultimos Dias</label>
 		<div id="Dia3" style="width:350px; height: 70px; /*margin: 8px auto;*/"></div>
@@ -25,15 +26,9 @@
 		<div>
 		<ul id="menuAreas" class="list-unstyled">
 			<li value="" ng-click="cualArea('')">Todas las Areas</li>
-			<li ng-repeat="area in listareas" ng-click="cualArea(area.nombre_area)">
+			<li ng-repeat="area in listareas" ng-click="cualArea(area.nombre_area)" ng-class="{pinkList: area.id_area == 3, blueList: area.id_area == 4}">
 				{{area.nombre_area}}
 			</li>
-			<!--<li ng-repeat="area in listareas" ng-click="cualArea(area.nombre_area)" ng-if="area.id_area==2" style="background:pink;">
-				{{area.nombre_area}}
-			</li>
-			<li ng-repeat="area in listareas" ng-click="cualArea(area.nombre_area)" ng-if="area.id_area!=2">
-				{{area.nombre_area}}
-			</li>-->
 		</ul>
 		</div>
 	</div>
@@ -63,16 +58,19 @@
 			<label ng-if="mySelections[0].genero != 'f'">Masculino, {{mySelections[0].edad}}</label>
 			<br/><label>Hora de llegada: {{mySelections[0].hora_entrada}}</label><br/>
 			<div style="float:right; width:100%; margin-top:10px;">
-				<div class="gridStyle" style="overflow: hidden" ng-grid="gridOptions2"></div>
+				<div class="gridStyle" ng-grid="gridOptions2"></div>
 			</div>
 		</div>
 	</div>
+	</div>
 
-	<div style="width:50%; height:300px; border:1px solid grey; border-radius: 10px; float: left; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; text-align: left; overflow: auto;">
+	<button ng-click="Ir1()">Cambio de Vista</button>
+
+	<div class="sortablePage" ng-hide="true" style="width:50%; height:300px; border:1px solid grey; border-radius: 10px; float: left; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; text-align: left; overflow: auto;">
 		<div style="float: left;">
 			<ul id="menuAreas" class="list-unstyled" style="width:150%;" ui-sortable="sortableOptions" ng-model="listareas">
 				<li ng-repeat="area in listareas">
-					<img style="max-width:30px;" src="https://www.forumsport.com/img/productos/299x299/378373.jpg" title="sample"/>
+					<img style="max-width:30px;" src="https://www.forumsport.com/img/productos/299x299/378373.jpg" title="balon"/>
 					{{area.nombre_area}}
 				</li>
 			</ul>
