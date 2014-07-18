@@ -1,0 +1,18 @@
+<div style="width:50%; height:300px; border:1px solid grey; border-radius: 10px; float: left; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; text-align: left; overflow: auto;">
+	<div style="float: left;">
+		<ul id="menuAreas" class="list-unstyled" style="width:150%;" ui-sortable="sortableOptions" ng-model="listareas">
+			<li ng-repeat="area in listareas">
+				<img style="max-width:30px;" src="https://www.forumsport.com/img/productos/299x299/378373.jpg" title="balon"/>
+				{{area.nombre_area}}
+			</li>
+		</ul>
+	</div>
+	<div style="float: right;">
+		<ul class="list logList">
+		  <li ng-repeat="entry in sortingLog track by $index" class="logItem">{{entry}}</li>
+		</ul>
+	</div>
+</div>
+<div class="text-center" style="width:80%; float: left; margin-top:10px;">
+	<button ng-click="go('/')">Ir a Pagina Principal</button>
+</div>

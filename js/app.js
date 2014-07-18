@@ -1,11 +1,11 @@
 //Definir un módulo angular de nuestra aplicación
-var app = angular.module('MyAppInartec', ['ngGrid', 'ui.sortable']);
+var app = angular.module('MyAppInartec', ['ngGrid', 'ui.sortable', 'ngRoute']);
 
 var efectoSelectedItems = true;
 var dataSelectedItem = [];
 var dataListArea = [];
 
-app.controller('DashboardControl', function($scope, $http) {
+app.controller('DashboardControl', function($scope, $http, $location) {
 
   // Cargar todas las areas disponibles en BD
   getArea();
@@ -150,16 +150,14 @@ app.controller('DashboardControl', function($scope, $http) {
     sortInfo:  { fields: ['estatus'], directions: ['asc'] },
     multiSelect: true
   }
-  $('.ngCanvas').find('div').removeClass('even');
 
   $scope.$on('ngGridEventData', function(){
-    //$scope.gridOptions2.selectRow(0, true);
     // Recorro los datos de "myData2".
     angular.forEach($scope.myData2, function(data, index){
         // si estatus es igual a uno marco la fila.
         if(data.estatus == 1){
-            // index = posicion de la fila que sera marcada.
-            $scope.gridOptions2.selectItem(index, true);
+          // index = posicion de la fila que sera marcada.
+          $scope.gridOptions2.selectItem(index, true);
         }
     });
   });
@@ -167,15 +165,31 @@ app.controller('DashboardControl', function($scope, $http) {
   $scope.Arriba = function(){
     angular.forEach($scope.myData2, function(data, index){
         if(data.procedimiento === $scope.mySelections2[0].procedimiento){
-            // Cambio el valor de una fila por "1".
-            $scope.myData2[index].estatus = 1;
+          // Cambio el valor de una fila por "1".
+          $scope.myData2[index].estatus = 1;
         }
     });
   };
 
-  $scope.Ir1 = function(){
-    Ir11();
+  $scope.go = function (path){
+    $location.path(path);
   };
+});
+
+// Configuración de las rutas
+app.config(function($routeProvider){
+    $routeProvider
+        .when('/', {
+            templateUrl : 'pages/main.html',
+            controller  : 'DashboardControl'
+        })
+        .when('/sortable', {
+            templateUrl : 'pages/sortable.html',
+            controller  : 'DashboardControl'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
 });
 
 function Create_StadistDay(Day,PerDay,DataGrap,container){
@@ -189,45 +203,39 @@ function Create_StadistDay(Day,PerDay,DataGrap,container){
   PerDay = [[0,PorDay+'%'],[1,'100%']];
 
   DataGrap = [
-      {data:[[60,1]],color:"#b7e4f7"},
-      {data:[[30,0]],color:"#f7de8b"},
+    {data:[[60,1]],color:"#b7e4f7"},
+    {data:[[30,0]],color:"#f7de8b"},
 
-      {label:'Lunes',data:[[60,1]],color:"#b7e4f7",yaxis:2},
-      {label:'Metadiaria',data:[[30,0]],color:"#f7de8b",yaxis:2}
+    {label:'Lunes',data:[[60,1]],color:"#b7e4f7",yaxis:2},
+    {label:'Metadiaria',data:[[30,0]],color:"#f7de8b",yaxis:2}
   ];
 
   //container = document.getElementById(app.w('Stadist_DayChart').base()[0].id);
   //container = $('Dia1');
   graph = Flotr.draw(container,DataGrap,{
-      bars : {
-          show : true,
-          horizontal : true,
-          shadowSize : 0,
-          barWidth : 0.5
-      },
-      legend : {
-          show:false
-      },
-      mouse : {
-          track : true,
-          relative : true
-      },
-      xaxis:{
-          min:0,
-          //max:app.parentApp().ConsultDaily()
-          max:50
-      },
-      yaxis : {
-          ticks:Day//[[0.5,'Lunes']]
-      },
-      y2axis:{
-          ticks:PerDay//[[0,'50%'],[1,'100%']]
-      }
+    bars : {
+      show : true,
+      horizontal : true,
+      shadowSize : 0,
+      barWidth : 0.5
+    },
+    legend : {
+        show:false
+    },
+    mouse : {
+        track : true,
+        relative : true
+    },
+    xaxis:{
+        min:0,
+        //max:app.parentApp().ConsultDaily()
+        max:50
+    },
+    yaxis : {
+        ticks:Day//[[0.5,'Lunes']]
+    },
+    y2axis:{
+        ticks:PerDay//[[0,'50%'],[1,'100%']]
+    }
   });
-}
-
-function Ir11(){
-  debugger;
-    /*$(".mainPage").slideUp('fast');
-    $(".sortablePage").slideDown('slow').attr('ng-hide','false');*/
 }
