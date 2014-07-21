@@ -13,6 +13,25 @@
 		</ul>
 	</div>
 </div>
-<div class="text-center" style="width:80%; float: left; margin-top:10px;">
+<div style="float: left; width:100%">
+	<div ng-file-select="onFileSelect($files)" data-multiple="true" title="aaaa" onclick="this.value = null" class="upload-button">
+	Selecciona el archivo
+	</div>
+	<br/>
+	<br/>
+	<div ng-show="selectedFiles != null">
+		<div class="sel-file" ng-repeat="f in selectedFiles">
+			{{($index + 1) + '.'}}
+			<img ng-show="dataUrls[$index]" ng-src="{{dataUrls[$index]}}">
+			<button class="button" ng-click="start($index)" ng-show="progress[$index] < 0">Start</button>
+			<span class="progress" ng-show="progress[$index] >= 0">
+				<div style="width:{{progress[$index]}}%">{{progress[$index]}}%</div>
+			</span>
+			<button class="button" ng-click="abort($index)" ng-show="hasUploader($index) && progress[$index] < 100">Abort</button>
+			{{f.name}} - size: {{f.size}}B - type: {{f.type}}
+		</div>
+	</div>
+</div>
+<div class="text-center" style="width:80%; float:left; margin-top:10px;">
 	<button ng-click="go('/')">Ir a Pagina Principal</button>
 </div>
