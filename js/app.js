@@ -5,8 +5,11 @@ var efectoSelectedItems = true;
 var dataSelectedItem = [];
 var dataListArea = [];
 
-var uploadUrl = 'http://angular-file-upload-cors-srv.appspot.com/upload';
-window.uploadUrl = window.uploadUrl || 'upload';
+//var uploadUrl = 'http://angular-file-upload-cors-srv.appspot.com/upload';
+
+var uploadUrl = 'http://localhost/';
+
+window.uploadUrl = window.uploadUrl || 'localhost';
 
 app.controller('DashboardControl', function($scope, $http, $location, $timeout, $upload) {
 
@@ -190,13 +193,11 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout, 
     return $scope.upload[index] != null;
   };
   $scope.abort = function(index) {
-    debugger;
     $scope.upload[index].abort();
     $scope.upload[index] = null;
   };
   $scope.angularVersion = window.location.hash.length > 1 ? (window.location.hash.indexOf('/') === 1 ? window.location.hash.substring(2): window.location.hash.substring(1)) : '1.2.20';
   $scope.onFileSelect = function($files) {
-    debugger;
     $scope.selectedFiles = [];
     $scope.progress = [];
     if ($scope.upload && $scope.upload.length > 0) {
@@ -254,7 +255,7 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout, 
         $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
       });
       $scope.upload[index].xhr(function(xhr){
-//        xhr.upload.addEventListener('abort', function() {console.log('abort complete')}, false);
+        // xhr.upload.addEventListener('abort', function() {console.log('abort complete')}, false);
       });
     } else {
       var fileReader = new FileReader();
