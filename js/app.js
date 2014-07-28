@@ -58,6 +58,7 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout, 
     $http.post("php/consultas.php")
     .success(function(data){
       $scope.myData = data;
+      dataLis22  = data;
     });
   }
 
@@ -114,7 +115,7 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout, 
         console.log("start/comienzo");
     },
     update: function(e, ui) {
-      // [ui.item[0].innerText] = Elemento que movimos
+      console.log("--> Levantaste a '"+ui.item[0].innerText+"'<--");
       console.log("update/actualización");
 
       var logEntry = dataListArea.map(function(i){
