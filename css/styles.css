@@ -127,7 +127,15 @@ ul#menuAreas li::after {
 /* Fin Diseño mMobile List*/
 .gridStyle {
     border: 1px solid rgb(212,212,212);
-    width: 100%;
+    width: 100% !important;
+    height: 250px;
+    text-align: left;
+    font-family: "Arial";
+    font-size: 13px;
+}
+.gridStyle2 {
+    border: 1px solid rgb(212,212,212);
+    width: 435px;
     height: 250px;
     text-align: left;
     font-family: "Arial";
