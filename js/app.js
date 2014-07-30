@@ -12,7 +12,20 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout) 
 
   function getArea(){
     $http.post("php/areas.php").success(function(data){
-      $scope.listareas = [data,data];
+      $scope.listareas = data;
+      esto = [[{ id: '1', nombre_area: 'Jose' },
+               { id: '2', nombre_area: 'Laura' },
+               { id: '3', nombre_area: 'Maria' },
+               { id: '4', nombre_area: 'Miguel' }],
+            [{ id: '5', nombre_area: 'Raul' },
+               { id: '6', nombre_area: 'Brenda' },
+               { id: '7', nombre_area: 'Palmariz' },
+               { id: '8', nombre_area: 'Johanna' }],
+            [{ id: '9', nombre_area: 'Angeline' },
+               { id: '10', nombre_area: 'Jackeline' },
+               { id: '11', nombre_area: 'Eleazar' },
+               { id: '12', nombre_area: 'Graciela' }]];
+      $scope.listareasS = esto;
       LoadGrid();
     });
   };
@@ -71,7 +84,7 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout) 
   };
 
   // Inicio Opciones/Eventos para el sortable..
-  $scope.sortingLog = [];
+  /*$scope.sortingLog = [];
 
   function createOptions (listName) {
     var _listName = listName;
@@ -92,8 +105,30 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout) 
 
   $scope.logModels = function () {
     $scope.sortingLog = [];
-    for (var i = 0; i < $scope.listareas.length; i++) {
-      var logEntry = $scope.listareas[i].map(function (x) {
+    for (var i = 0; i < $scope.listareasS.length; i++) {
+      var logEntry = $scope.listareasS[i].map(function (x) { return x.nombre_area; }).join(', ');
+      logEntry = 'Contenedor ' + (i+1) + ': ' + logEntry;
+      $scope.sortingLog.push(logEntry);
+    }
+  };*/
+
+  $scope.sortingLog = [];
+  // Configuramos que listas estaran conectadas
+  $scope.sortableOptions = {
+    placeholder: "Jen2", // Llamamos la clase del ul que queremos conectar.
+    connectWith: ".Jen", // Llamamos la clase del li que queremos conectar.
+    update: function(event, ui) {
+      if (event.target.id !== 'sort-1' && ui.item.sortable.droptarget.attr('id') === 'sort-1' && $scope.listareasS[1].length >= 5) {
+        ui.item.sortable.cancel();
+        alert('Capacidad Maxima');
+      }
+      $scope.logModels();
+    }
+  };
+  $scope.logModels = function () {
+    $scope.sortingLog = [];
+    for (var i = 0; i < $scope.listareasS.length; i++) {
+      var logEntry = $scope.listareasS[i].map(function (x) {
         return x.nombre_area;
       }).join(', ');
       logEntry = 'Contenedor ' + (i+1) + ': ' + logEntry;

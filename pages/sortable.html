@@ -4,9 +4,9 @@
 		  <li ng-repeat="entry in sortingLog track by $index" class="logItem">{{entry}}</li>
 		</ul>
 	</div>
-	<div style="width: 200px;">
-		<ul id="menuAreas" class="list-unstyled Jen" style="width:150%;" ui-sortable="sortableOptions[0]" ng-model="listareas[0]">
-			<li class="Jen2" ng-repeat="area in listareas[0]">
+	<!--<div style="width: 200px;">
+		<ul id="menuAreas" class="list-unstyled Jen" style="width:150%;" ui-sortable="sortableOptions[0]" ng-model="listareasS[0]">
+			<li class="Jen2" ng-repeat="area in listareasS[0]">
 				<img style="max-width:30px;" src="https://www.forumsport.com/img/productos/299x299/378373.jpg" title="balon"/>
 				{{$index}} {{area.nombre_area}}
 			</li>
@@ -14,10 +14,18 @@
 	</div>
 	<br/>
 	<div style="width: 200px;">
-		<ul id="menuAreas" class="list-unstyled Jen" style="width:150%;" ui-sortable="sortableOptions[1]" ng-model="listareas[1]">
-			<li class="Jen2" ng-repeat="area in listareas[1]">
+		<ul id="menuAreas" class="list-unstyled Jen" style="width:150%;" ui-sortable="sortableOptions[1]" ng-model="listareasS[1]">
+			<li class="Jen2" ng-repeat="area in listareasS[1]">
 				<img style="max-width:30px;" src="https://www.forumsport.com/img/productos/299x299/378373.jpg" title="balon"/>
 				{{$index}} {{area.nombre_area}}
+			</li>
+		</ul>
+	</div>-->
+	<div style="width: 200px;">
+		<ul id="sort-{{$index}}" class="list-unstyled Jen menuAreas" style="width:150%; border:1px solid grey;" ng-repeat="area in listareasS" ui-sortable="sortableOptions"  ng-model="area">
+			<li class="Jen2" ng-repeat="areas in area">
+				<img style="max-width:30px;" src="https://www.forumsport.com/img/productos/299x299/378373.jpg" title="balon"/>
+				{{$index}} {{areas.nombre_area}}
 			</li>
 		</ul>
 	</div>

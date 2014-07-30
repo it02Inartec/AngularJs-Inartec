@@ -23,9 +23,9 @@
 	<label>Lista de Areas</label>
 	<div style="height:1px; background: grey;"></div>
 	<div>
-	<ul id="menuAreas" class="list-unstyled">
+	<ul id="menuAreas" class="list-unstyled menuAreas">
 		<li value="" ng-click="cualArea('')">Todas las Areas</li>
-		<li ng-repeat="area in listareas[0]" ng-click="cualArea(area.nombre_area)" ng-class="{pinkList: area.id_area == 3, blueList: area.id_area == 4}">
+		<li ng-repeat="area in listareas" ng-click="cualArea(area.nombre_area)" ng-class="{pinkList: area.id_area == 3, blueList: area.id_area == 4}">
 			{{area.nombre_area}}
 		</li>
 	</ul>
@@ -36,7 +36,7 @@
 	<div style="height:1px; background: grey;"></div>
 	<select style="width:100%">
 		<option value="">Todas las Areas</option>
-		<option ng-repeat="area in listareas[0]" value="area.id_area">{{area.nombre_area}}</option>
+		<option ng-repeat="area in listareas" value="area.id_area">{{area.nombre_area}}</option>
 	</select>
 	<div class="gridStyle" ng-grid="gridOptions" ng-mousedown="ff()"></div>
 	<div ng-hide="true">
