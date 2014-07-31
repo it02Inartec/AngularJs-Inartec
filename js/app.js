@@ -30,7 +30,11 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout) 
     });
   };
 
-  // Primero hay que configurar el grid y sus columnas.
+  // Valores para la paginacion
+  $scope.totalServerItems = 0;
+  $scope.pagingOptions = { pageSizes: [2, 5, 10], pageSize: 2, currentPage: 1 };
+
+  // Primero hay que definir las opciones el grid y sus columnas.
   $scope.mySelections = [];
   $scope.gridOptions = {
     data: 'myData',
@@ -56,7 +60,11 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout) 
     selectedItems: $scope.mySelections,
     showFilter: true,
     filterOptions: {filterText:'', useExternalFilter: false},
-    multiSelect: false
+    multiSelect: false,
+    enablePaging: true,
+    showFooter: true,
+    totalServerItems: 'totalServerItems', // Para validar cuantos mas "next" se pueden dar.
+    pagingOptions: $scope.pagingOptions
   }
 
   // Luego podemos cargar el grid
@@ -64,6 +72,10 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout) 
     $http.post("php/consultas.php")
     .success(function(data){
       $scope.myData = data;
+      debugger;
+      var pagedData = data.slice(($scope.pagingOptions.currentPage - 1) * $scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage * $scope.pagingOptions.pageSize);
+      $scope.myData = pagedData;
+      $scope.totalServerItems = data.length;
     });
   }
 
@@ -120,7 +132,7 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout) 
     update: function(event, ui) {
       if (event.target.id !== 'sort-1' && ui.item.sortable.droptarget.attr('id') === 'sort-1' && $scope.listareasS[1].length >= 5) {
         ui.item.sortable.cancel();
-        alert('Capacidad Maxima');
+        alert('Capacidad Maxima Alcanzada');
       }
       $scope.logModels();
     }
