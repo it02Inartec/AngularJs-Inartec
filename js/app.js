@@ -235,7 +235,7 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout) 
   $scope.sortingLog2 = [];
   // Configuramos que listas estaran conectadas.
   $scope.sortableOptions2 = {
-    placeholder: "Jen3", // Llamamos la clase del ul que queremos conectar.
+    placeholder: "imagenes", // Llamamos la clase del ul que queremos conectar.
     connectWith: ".contenedor", // Llamamos la clase del li que queremos conectar.
     update: function(event, ui) {
       debugger;
