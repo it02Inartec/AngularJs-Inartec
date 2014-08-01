@@ -1,4 +1,4 @@
-<div style="width:50%; height:660px; border:1px solid grey; border-radius: 10px; float: left; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; text-align: left; overflow: auto;">
+<div class="sortable">
 	<div style="float: right;">
 		<ul class="list logList">
 		  <li ng-repeat="entry in sortingLog track by $index" class="logItem">{{entry}}</li>
@@ -30,6 +30,7 @@
 		</ul>
 	</div>
 </div>
-<div class="text-center" style="width:80%; float:left; margin-top:10px;">
+<div class="text-center" style="width:100%; float:left; margin-top:10px;">
 	<button ng-click="go('/')">Ir a Pagina Principal</button>
+	<button ng-click="go('/cuadros')">Ir a Pagina Siguiente</button>
 </div>

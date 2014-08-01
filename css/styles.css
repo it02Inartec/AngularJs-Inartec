@@ -128,7 +128,7 @@ label{
 .gridStyle {
     border: 1px solid rgb(212,212,212);
     width: 100% !important;
-    height: 250px;
+    height: 365px;
     text-align: left;
     font-family: "Arial";
     font-size: 13px;
@@ -301,3 +301,37 @@ button {
 	border: 1px solid black;
 }
 /* Fin estilos para la carga de archivos */
+.sortable{
+	width:50%;
+	height:660px;
+	border:1px solid grey;
+	border-radius: 10px;
+	float: left;
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	text-align: left;
+	overflow: auto;
+}
+.Cuadros{
+	width:50%;
+	height:500px;
+	padding: 10px;
+}
+.cuadritos{
+	width:150px;
+	height:160px;
+	border:1px solid grey;
+	border-radius: 10px;
+	float: left;
+	margin-right: 10px;
+}
+.contenedor{
+	width: 148px;
+	height: 130px;
+	border: 1px solid grey;
+	border-radius: 10px;
+}
+.imagenes{
+	float: left;
+}

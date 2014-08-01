@@ -1,0 +1,13 @@
+<div class="Cuadros">
+	<div class="cuadritos" ng-repeat="pp in listareas">
+		<div class="contenedor" ui-sortable="sortableOptions2" ng-model="listareas"></div>
+		<label>{{pp.nombre_area}}</label>
+	</div>
+</div>
+<div class="imagenes">
+	<img src="http://imagenesdecarros.org/galeria/main.php?g2_view=core.DownloadItem&g2_itemId=1835" class="Jen3">
+</div>
+<div class="text-center" style="width:100%; float:left; margin-top:10px;">
+	<button ng-click="go('/')">Ir a Pagina Principal</button>
+	<button ng-click="go('/sortable')">Volver</button>
+</div>
