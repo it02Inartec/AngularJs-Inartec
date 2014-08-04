@@ -209,7 +209,6 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout) 
     placeholder: "Jen2", // Llamamos la clase del ul que queremos conectar.
     connectWith: ".Jen", // Llamamos la clase del li que queremos conectar.
     update: function(event, ui) {
-      debugger;
       if (event.target.id !== 'sort-2' && ui.item.sortable.droptarget.attr('id') === 'sort-2' && $scope.listareasS[2].length >= 2) {
         ui.item.sortable.cancel();
         alert('Capacidad Maxima Alcanzada');
@@ -238,6 +237,7 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout) 
     placeholder: "imagenes", // Llamamos la clase del ul que queremos conectar.
     connectWith: ".contenedor", // Llamamos la clase del li que queremos conectar.
     update: function(event, ui) {
+      console.log("--> Levantaste a '"+ui.item[0].innerText+"'<--");
       debugger;
     }
   };
