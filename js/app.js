@@ -307,7 +307,7 @@ function Create_StadistDay(Day,PerDay,DataGrap,container){
     xaxis:{
         min:0,
         //max:app.parentApp().ConsultDaily()
-        max:50
+        max:100
     },
     yaxis : {
         ticks:Day//[[0.5,'Lunes']]
