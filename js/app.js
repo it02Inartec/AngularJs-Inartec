@@ -238,7 +238,6 @@ app.controller('DashboardControl', function($scope, $http, $location, $timeout) 
     connectWith: ".contenedor", // Llamamos la clase del li que queremos conectar.
     update: function(event, ui) {
       console.log("--> Levantaste a '"+ui.item[0].innerText+"'<--");
-      debugger;
     }
   };
 
