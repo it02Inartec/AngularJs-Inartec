@@ -264,6 +264,10 @@ app.config(function($routeProvider){
             templateUrl : 'pages/cuadros.html',
             controller  : 'DashboardControl'
         })
+        .when('/Image', {
+          templateUrl : 'UpFile/index.html',
+          controller  : 'DashboardControl'
+        })
         .otherwise({
             redirectTo: '/'
         });

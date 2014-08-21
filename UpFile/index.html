@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html ng-app="app" flow-init
-      flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
-      flow-files-submitted="$flow.upload()">
+<html ng-app="app" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow-files-submitted="$flow.upload()">
 <head>
   <title>Image</title>
   <script src="../js/angular.js"></script>
   <script src="ng-flow-standalone.js"></script>
-  <script src="app.js"></script>
   <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"/>
+  <script src="app.js"></script>
   <style>
     .thumbnail { max-width: 200px; /*max-height: 150px;*/ line-height: 20px; margin-bottom: 5px; }
   </style>
 </head>
 <body>
-<div class="container">
-  <h1>flow image example</h1>
+<div class="container" style="height:790px;">
+  <h1>Pruebas Imagen</h1>
   <hr class="soften"/>
   <div>
     <div class="thumbnail" ng-hide="$flow.files.length">
@@ -24,12 +22,16 @@
       <img flow-img="$flow.files[0]" />
     </div>
     <div>
-      <a href="#" class="btn" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Select image</a>
-      <a href="#" class="btn" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Change</a>
-      <a href="#" class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remove</a>
+      <a href="#" class="btn" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Seleccionar imagen</a>
+      <a href="#" class="btn" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Cambiar</a>
+      <a href="#" class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remover</a>
     </div>
-    <p>Only PNG,GIF,JPG files allowed.</p>
+    <p>Solo PNG,GIF,JPG archivos permitidos.</p>
   </div>
 </div>
+  <ul class="nav nav-tabs" style="float:left;">
+    <li><a href="http://localhost/Angular-Inartec/#/">Inicio</a></li>
+      <li><a href="#">Pruebas Carga Imagen</a></li>
+  </ul>
 </body>
 </html>
